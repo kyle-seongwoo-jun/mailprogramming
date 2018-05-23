@@ -1,2 +1,2 @@
 # Mail Programming
-Study algorithm with [Mail Programming](https://mailprogramming.com/)
+Study algorithms with [Mail Programming](https://mailprogramming.com/)
