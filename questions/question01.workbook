@@ -1,0 +1,60 @@
+---
+uti: com.xamarin.workbook
+id: 516e892f-eeb1-40b3-8c1c-b568602aaa10
+title: question01
+platforms:
+- DotNetCore
+---
+
+# 매일프로그래밍 - Question 1
+
+> 정수 배열(int array)가 주어지면 가장 큰 이어지는 원소들의 합을 구하시오. 단, 시간복잡도는 O(n).
+>
+> 예제}
+>
+> Input: \[-1, 3, -1, 5]
+>
+> Output: 7 // 3 + (-1) + 5
+>
+> Input: \[-5, -3, -1]
+>
+> Output: -1 // -1
+>
+> Input: \[2, 4, -2, -3, 8]
+>
+> Output: 9 // 2 + 4 + (-2) + (-3) + 8
+
+문제 풀이에 필요한 알고리즘 : Largest Sum Contiguous Subarray
+
+참조:  https://www.geeksforgeeks.org/largest-sum-contiguous-subarray/
+
+```csharp
+int GetMaxSubArraySum(params int[] array)
+{
+    int maxValue = int.MinValue;
+    int sum = 0;
+
+    foreach (int item in array)
+    {
+        sum = Math.Max(sum, 0) + item;
+        maxValue = Math.Max(sum, maxValue);
+    }
+
+    return maxValue;
+}
+```
+
+```csharp
+GetMaxSubArraySum(-1, 3, -1, 5);
+// result is 7
+```
+
+```csharp
+GetMaxSubArraySum(-5, -3, -1);
+// result is -1
+```
+
+```csharp
+GetMaxSubArraySum(2, 4, -2, -3, 8);
+// result is 9
+```
