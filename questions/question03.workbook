@@ -20,3 +20,81 @@ Output: \["(())", "()()"]
 
 Input: 3\
 Output: \["((()))", "(()())", "()(())", "(())()", "()()()"]
+
+## 풀이
+
+솔직히 1도 모르겠어서 구글링을 해봤다.
+
+찾아보니 사실 이는 고등학교 확률과 통계에서 배웠던 **카탈란 수**와 관련이 있었다. 카탈란 수라고만 했을 땐 기억이 안 났는데 최단 경로 경우의 수 얘기가 나오니 생각났다.
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Catalan_number_4x4_grid_example.svg/450px-Catalan_number_4x4_grid_example.svg.png)\
+*(이겅)*
+
+1, 2, 5, 14, 42, … 로 이어지는 수열이다. *(자세한 설명은 [여기에서)](https://en.wikipedia.org/wiki/Catalan_number)*
+
+검색해보니 카탈란 수를 구하는 문제는 많아도 이를 활용한 문제인 모든 괄호 조합을 구하는 문제는 별로 없었다.
+
+검색해보니 다음 링크를 통해 자료를 얻을 수 있었다.
+
+* http://rim0621.tistory.com/21
+
+* http://makefortune2.tistory.com/209
+
+위 블로그에 C++ 예제 코드가 있다.\
+재귀함수를 통해 ‘(‘와 ‘)’를 만들어 내는 코드인데 ㅋㅋㅋㅋㅋㅋㅋ\
+코드를 봐도 대충은 이해가 되는데 바로 직감적으로 이해가 안된다….
+
+## 답안
+
+예제 코드를 참고로 한 C# 코드이다.
+
+```csharp
+List<string> list = new List<string>();
+
+void Bracket(char[] array, int index, int open, int close)
+{
+    // 열린 괄호 만들기
+    if (open > 0)
+    {
+        array[index] = '(';
+        Bracket(array, index + 1, open -1, close + 1);
+    }
+
+    // 닫히는 괄호 만들기
+    if (close > 0)
+    {
+        array[index] = ')';
+        Bracket(array, index + 1, open, close - 1);
+    }
+
+    // 문자열 생성
+    if (open == 0 & close == 0)
+    {
+        string bracket = new string(array, 0, index);
+        list.Add(bracket);
+        //Console.WriteLine(bracket);
+    }
+}
+
+const int MaxCount = 100;
+List<string> GetBrackets(int n)
+{
+    list.Clear();
+ 
+    Bracket(
+        // 문자열의 길이는 n의 최대 값의 2배
+        array: new char[2 * MaxCount],
+        // 0부터 시작     
+        index: 0,
+        open: n, 
+        close: 0);
+
+    return list;
+}
+```
+
+```csharp
+GetBrackets(4)
+// result is
+// ["((()))", "(()())", "(())()", "()(())", "()()()"]
+```
