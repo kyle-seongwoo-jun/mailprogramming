@@ -1,0 +1,121 @@
+---
+uti: com.xamarin.workbook
+id: 0176fe7f-b8b7-46dd-85d3-3b6e8da5e5a2
+title: question04
+platforms:
+- DotNetCore
+---
+
+## 매일프로그래밍 - Question 4
+
+정수(int)가 주어지면, 팰린드롬(palindrome)인지 알아내시오. 팰린드롬이란, 앞에서부터 읽으나 뒤에서부터 읽으나 같은 단어를 말합니다. 단, 정수를 문자열로 바꾸면 안됩니다.
+
+예제)
+
+Input: 12345\
+Output: False
+
+Input: -101\
+Output: False
+
+Input: 11111\
+Output: True
+
+Input: 12421\
+Output: True
+
+## 풀이
+
+이번주 문제는 의외로 쉬웠다.
+
+자리수로 나누어 첫 자리와 끝 자리를 순서대로 비교하기만 하면 될 것이다. 바로 풀어 보았다.
+
+```csharp
+bool IsPalindrome(int number)
+{
+    // 음수는 팰린드롬이 될 수 없음
+    if (number < 0)
+         return false;
+
+    // 몇의 자리수인지 알아냄
+    int size = 1;
+    for (int i = 1; ; i *= 10)
+    {
+        if (number % i == number) 
+        {
+            size = i / 10;
+            break;
+        }
+    }
+
+    // 자리수 별로 숫자를 나눠 저장
+    var list = new List<int>();
+    for (int i = size; i > 0; i /= 10) 
+    {
+        list.Add(number / i);
+        number %= i;
+    }
+
+    // 앞과 뒤 자리를 순서대로 비교
+    for (int i = 0, j = list.Count -1; ; i++, j--)
+    {
+        if (list[i] != list[j])
+            return false;
+
+        // 비교가 끝이 남
+        if (i + 1 == j || i + 2 == j)
+            break;
+    }
+
+    // 성공!
+    return true;
+}
+```
+
+```csharp
+IsPalindrome(12345)
+// result is false.
+```
+
+```csharp
+IsPalindrome(-101)
+// result is false.
+```
+
+```csharp
+IsPalindrome(11111)
+// result is true.
+```
+
+```csharp
+IsPalindrome(12421)
+// result is true.
+```
+
+## 답안
+
+정말 간단했다. 그냥 뒤집고 비교하면 된다.\
+ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ 뭐 이렇게 어렵게 풀었지?
+
+앞으로는 더욱 간단히 생각해보도록 노력해보자~~~
+
+```csharp
+bool IsPalindrome2(int num)
+{
+    int temp = num, remainder, reverse = 0;
+
+    while (temp > 0)
+    {
+        remainder = temp % 10;
+        reverse = reverse * 10 + remainder;
+        temp /= 10;
+    }
+
+    return num == reverse;
+}
+```
+
+```csharp
+IsPalindrome2(-101)
+// result is false.
+```
