@@ -54,3 +54,23 @@ GetMaxSubArraySum(-5, -3, -1);
 GetMaxSubArraySum(2, 4, -2, -3, 8);
 // result is 9
 ```
+
+# 새로 알게 된 점
+
+## 동적 계획법
+
+쉽게 말하자면 한 번 했던 연산은 다시 안 하도록 해서 효율적인 알고리즘을 만드는 방법
+
+**종류**
+
+* 상향식 : 했던 연산들을 캐싱하여 다시 연산하지 않도록 함
+
+* 하향식 : 애초에 처음부터 중복된 연산을 하지 않도록 함 **(리얼 동적 계획법 ㄷㄷㄷ)**
+
+## 참고
+
+* [위키백과](https://ko.wikipedia.org/wiki/%EB%8F%99%EC%A0%81_%EA%B3%84%ED%9A%8D%EB%B2%95)
+
+* [꺼무위키](https://namu.wiki/w/%EB%8F%99%EC%A0%81%20%EA%B3%84%ED%9A%8D%EB%B2%95)
+
+* [티스토리](http://new93helloworld.tistory.com/220)
