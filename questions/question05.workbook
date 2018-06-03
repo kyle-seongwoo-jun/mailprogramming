@@ -159,3 +159,9 @@ GetIndexes2(new[] { 2, 5, 6, 1, 10 }, 8)
 값이 오면 리턴하는 알고리즘이였다.
 
 앞으로도 조금 효율적으로 생각하도록 해보자.
+
+# 참고 링크
+
+* [Stackoverflow](https://stackoverflow.com/questions/4720271/find-a-pair-of-elements-from-an-array-whose-sum-equals-a-given-number)
+
+* [GeeksforGeeks](https://www.geeksforgeeks.org/write-a-c-program-that-given-a-set-a-of-n-numbers-and-another-number-x-determines-whether-or-not-there-exist-two-elements-in-s-whose-sum-is-exactly-x/)
